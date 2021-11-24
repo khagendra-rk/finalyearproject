@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Models\Salary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,10 +24,6 @@ class SalaryController extends Controller
         //     ->get();
 
         $salaries = Salary::with('employee')->get();
-
-        // echo ("<pre>");
-        // print_r($salaries);
-        // exit();
         return view('admin.salaries.index', compact('salaries'));
     }
 
@@ -154,8 +151,8 @@ class SalaryController extends Controller
     }
     public function PaySalary()
     {
-        $employee = DB::table('employees')->get();
-        return view('admin.salaries.pay', compact('employee'));
+        $salaries = Salary::with('employee')->get();
+        return view('admin.salaries.pay', compact('salaries'));
         // dd("paysalary");
         // $month = date("F", strtotime('-1 month'));
         // $salaries = DB::table('salaries')

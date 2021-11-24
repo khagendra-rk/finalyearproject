@@ -41,12 +41,12 @@ function deleteSalary(id){
             ->get(); --}}
                {{-- @endphp --}}
                <tbody>
-               @foreach ($employee as $row )
+               @foreach ($salaries as $row )
                <tr>
-                   <td>{{ $row->name }}</td>
-                   <td>{{ $row->salary }}</td>
+                   <td>{{ $row->employee->name }}</td>
+                   <td>{{ $row->employee->salary }}</td>
                    <td>{{date("F",strtotime('-1 months'))}}</td>
-                   {{-- <td>{{ $row->advanced_salary }}</td> --}}
+                   <td>{{ $row->advanced_salary }}</td>
                    <td><a href="{{ route('admin.salaries.pay',$row->id) }}">Pay Now</a></td>
                </tr>
                @endforeach    
