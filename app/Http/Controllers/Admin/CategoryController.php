@@ -79,7 +79,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'cat_name'    => ['required', 'min:2', 'max:50', 'unique:categories,cat_name'],
+        ]);
+        $category = new Category();
+        $category->cat_name = $request->cat_name;
+        $category->save();
+        return redirect()
+            ->route('admin.categories.index')
+            ->with('success', 'Category has been updated successfully!');
     }
 
     /**
