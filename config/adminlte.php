@@ -124,7 +124,7 @@ return [
     'classes_body' => 'layout-fixed layout-navbar-fixed ',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_content_wrapper' => 'pt-3',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-info elevation-2',

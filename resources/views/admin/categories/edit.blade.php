@@ -24,7 +24,7 @@ $(document).ready(function() {
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="cat-name"> Category Name</label>
+        <label for="cat_name"> Category Name</label>
         <input type="text" name="cat_name" id="cat_name" class="form-control @error('cat_name') is-invalid           
         @endif" value="{{ old('cat_name')??$category->cat_name}}">
         @error('cat_name')

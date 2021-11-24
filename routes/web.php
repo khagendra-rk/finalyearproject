@@ -37,8 +37,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('employees', EmployeeController::class);
         Route::resource('customers', CustomerController::class);
         Route::resource('suppliers', SupplierController::class);
-        Route::resource('salaries', SalaryController::class);
         Route::get('salaries/pay', [SalaryController::class, 'PaySalary'])->name('salaries.pay');
+        Route::resource('salaries', SalaryController::class);
         Route::resource('categories', CategoryController::class);
     });
 });

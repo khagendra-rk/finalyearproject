@@ -26,8 +26,7 @@ function deleteSalary(id){
                <thead>
                    <tr>
                        <th>Employee Name</th>
-                       <th>Paid Month</th>
-                       <th>Paid Year</th>
+                       <th>Payment Date</th>
                        <th>Advanced Salary</th>
                        <th>Salary</th>
                        <th>Edit</th>
@@ -37,11 +36,10 @@ function deleteSalary(id){
                <tbody>
                @foreach ($salaries as $salary )
                <tr>
-                   <td>{{ $salary->name }}</td>
-                   <td>{{ $salary->month }}</td> 
-                   <td>{{ $salary->year }}</td>
-                   <td>{{ $salary->advanced_salary }}</td>
-                   <td>{{ $salary->salary }}</td>
+                   <td>{{ $salary->employee->name }}</td>
+                   <td>{{ $salary->month }}, {{ $salary->year }}</td>
+                   <td>Rs. {{ $salary->advanced_salary }}</td>
+                   <td>Rs. {{ $salary->employee->salary }}</td>
                    <td>
                     <a href="{{ route('admin.salaries.edit',$salary->id) }}">Edit</a>
                 </td>
