@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SalaryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -38,5 +39,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('suppliers', SupplierController::class);
         Route::resource('salaries', SalaryController::class);
         Route::get('salaries/pay', [SalaryController::class, 'PaySalary'])->name('salaries.pay');
+        Route::resource('categories', CategoryController::class);
     });
 });

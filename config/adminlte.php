@@ -351,7 +351,7 @@ return [
                 ],
                 [
                     'text' => 'View All Categoires',
-                    'url' => '/admin/salaries',
+                    'url' => '/admin/categories',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
             ]
