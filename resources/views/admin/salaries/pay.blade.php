@@ -32,20 +32,20 @@ function deleteSalary(id){
                        <th>Pay</th>
                    </tr>
                </thead>
-               @php
+               {{-- @php
                $month=date("F",strtotime('-1 month'));
             $salaries = DB::table('salaries')
             ->join('employees', 'salaries.emp_id', 'employees.id')
             ->select('salaries.*', 'employees.name', 'employees.salary')
             ->where('month','$month')
-            ->get();
-               @endphp
+            ->get(); --}}
+               {{-- @endphp --}}
                <tbody>
                @foreach ($employee as $row )
                <tr>
                    <td>{{ $row->name }}</td>
                    <td>{{ $row->salary }}</td>
-                   <td>{{ $row->month }}</td>
+                   <td>{{date("F",strtotime('-1 months'))}}</td>
                    {{-- <td>{{ $row->advanced_salary }}</td> --}}
                    <td><a href="{{ route('admin.salaries.pay',$row->id) }}">Pay Now</a></td>
                </tr>

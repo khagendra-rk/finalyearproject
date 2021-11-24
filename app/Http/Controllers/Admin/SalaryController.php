@@ -14,23 +14,23 @@ class SalaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $salaries = DB::table('salaries')
-            ->join('employees', 'salaries.emp_id', 'employees.id')
-            ->select('salaries.*', 'employees.name', 'employees.salary')
-            ->orderBy('id', 'DESC')
-            ->get();
-        // echo ("<pre>");
-        // print_r($salaries);
-        // exit();
-        return view('admin.salaries.index', compact('salaries'));
-    }
     // public function index()
     // {
-    //     $employee = DB::table('employees')->get();
-    //     return view('admin.salaries.pay', compact('employee'));
+    //     $salaries = DB::table('salaries')
+    //         ->join('employees', 'salaries.emp_id', 'employees.id')
+    //         ->select('salaries.*', 'employees.name', 'employees.salary')
+    //         ->orderBy('id', 'DESC')
+    //         ->get();
+    //     // echo ("<pre>");
+    //     // print_r($salaries);
+    //     // exit();
+    //     return view('admin.salaries.index', compact('salaries'));
     // }
+    public function index()
+    {
+        $employee = DB::table('employees')->get();
+        return view('admin.salaries.pay', compact('employee'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -156,6 +156,7 @@ class SalaryController extends Controller
     }
     public function PaySalary()
     {
+        dd("paysalary");
         $month = date("F", strtotime('-1 month'));
         $salaries = DB::table('salaries')
             ->join('employees', 'salaries.emp_id', 'employees.id')

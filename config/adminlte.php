@@ -329,7 +329,7 @@ return [
                 ],
                 [
                     'text' => " Pay Salary",
-                    'url' => '/admin/salaries',
+                    'url' => '/admin/salaries/pay',
                     'icon' => 'nav-icon fas fa-fw fa-handshake',
                 ],
                 [
