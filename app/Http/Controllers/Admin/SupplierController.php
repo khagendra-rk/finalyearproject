@@ -74,7 +74,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        return view('admin.suppliers.show', compact('suppliers'));
+        return view('admin.suppliers.show', compact('supplier'));
     }
 
     /**
@@ -122,7 +122,7 @@ class SupplierController extends Controller
         $supplier->save();
         return redirect()
             ->route('admin.suppliers.index')
-            ->with('success', 'Supplier has been added successfully!');
+            ->with('success', 'Supplier has been updated successfully!');
     }
 
     /**

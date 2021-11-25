@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\admin\ExpenseController;
 use App\Http\Controllers\Admin\SupplierController;
 
 /*
@@ -42,5 +43,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('salaries', SalaryController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('products', ProductController::class);
+        Route::get('expenses/today', [ExpenseController::class, 'TodayExpense'])->name('expenses.today');
+        Route::get('expenses/monthly', [ExpenseController::class, 'MonthlyExpense'])->name('expenses.monthly');
+
+        Route::resource('expenses', ExpenseController::class);
     });
 });

@@ -390,17 +390,17 @@ return [
                 ],
                 [
                     'text' => 'Today Expenses',
-                    'url' => '/admin/expenses',
+                    'url' => '/admin/expenses/today',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
                 [
                     'text' => 'Monthly Expenses',
-                    'url' => '/admin/expenses',
+                    'url' => '/admin/expenses/monthly',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
                 [
                     'text' => 'Yearly Expenses',
-                    'url' => '/admin/expenses',
+                    'url' => '/admin/expenses/yearly',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
             ]
