@@ -99,7 +99,7 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
-            'email'   => ['required', 'email', 'unique:suppliers,email' . $supplier->id],
+            'email'   => ['required', 'email', 'unique:suppliers,email,' . $supplier->id],
             'phone' => ['required', 'max:10'],
             'address' => ['required'],
             'shopname' => ['required'],
@@ -109,7 +109,6 @@ class SupplierController extends Controller
             'account_number' => ['required'],
             'account_holder' => ['required'],
         ]);
-        $supplier = new Supplier;
         $supplier->name = $request->name;
         $supplier->email = $request->email;
         $supplier->phone = $request->phone;

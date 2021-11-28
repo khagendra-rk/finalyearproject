@@ -92,14 +92,13 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
-            'email'   => ['required', 'email', 'unique:employees,email' . $employee->id],
+            'email'   => ['required', 'email', 'unique:employees,email,' . $employee->id],
             'phone' => ['required', 'max:10'],
             'address' => ['required'],
             'salary' => ['required'],
             'experience' => ['required'],
 
         ]);
-        $employee = new Employee;
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->phone = $request->phone;

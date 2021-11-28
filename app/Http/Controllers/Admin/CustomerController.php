@@ -97,7 +97,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
-            'email'   => ['required', 'email', 'unique:customers,email' . $customer->id],
+            'email'   => ['required', 'email', 'unique:customers,email,' . $customer->id],
             'phone' => ['required', 'max:10'],
             'address' => ['required'],
             'shopname' => ['required'],
@@ -106,13 +106,14 @@ class CustomerController extends Controller
             'account_number' => ['required'],
             'account_holder' => ['required'],
         ]);
-        $customer = new Customer;
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
-        $customer->address = $request->address;
-        $customer->salary = $request->salary;
-        $customer->experience = $request->experience;
+        $customer->shopname = $request->shopname;
+        $customer->bank_name = $request->bank_name;
+        $customer->bank_branch = $request->bank_branch;
+        $customer->account_number = $request->account_number;
+        $customer->account_holder = $request->account_holder;
         $customer->save();
         return redirect()
             ->route('admin.customers.index')

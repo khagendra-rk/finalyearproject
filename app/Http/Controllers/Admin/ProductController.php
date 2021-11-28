@@ -106,17 +106,16 @@ class ProductController extends Controller
             'buying_price' => ['required'],
             'selling_price' => ['required'],
         ]);
-        $products = new Product;
-        $products->product_name = $request->product_name;
-        $products->product_code = $request->product_code;
-        $products->category_id = $request->category_id;
-        $products->supplier_id = $request->supplier_id;
-        $products->product_place = $request->product_place;
-        $products->buy_date = $request->buy_date;
-        $products->expire_date = $request->expire_date;
-        $products->buying_price = $request->buying_price;
-        $products->selling_price = $request->selling_price;
-        $products->save();
+        $product->product_name = $request->product_name;
+        $product->product_code = $request->product_code;
+        $product->category_id = $request->category_id;
+        $product->supplier_id = $request->supplier_id;
+        $product->product_place = $request->product_place;
+        $product->buy_date = $request->buy_date;
+        $product->expire_date = $request->expire_date;
+        $product->buying_price = $request->buying_price;
+        $product->selling_price = $request->selling_price;
+        $product->save();
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'Product has been update successfully!');

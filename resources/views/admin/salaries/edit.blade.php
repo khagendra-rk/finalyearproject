@@ -29,9 +29,9 @@ $(document).ready(function() {
             $emp=DB::table('employees')->get();
         @endphp
         <select name="emp_id" class="form-control">
-            <option disabled="" selected=""></option>
+            <option disabled="" selected="">Choose one...</option>
                 @foreach ($emp as $row)
-                    <option value="{{ $row->id }}">{{ $row->name }}</option>
+                    <option value="{{ $row->id }}"<?php if($salary->emp_id==$row->id){echo "selected";}?>>{{ $row->name }}</option>
                 @endforeach
         </select>
         {{-- <input type="text" name="name" id="name" class="form-control @error('name') is-invalid           
@@ -43,19 +43,10 @@ $(document).ready(function() {
     <div class="form-group">
         <label for="month">Month</label>
         <select name="month" class="form-control">
-            <option disabled="" selected=""></option>
-            <option value="January">January</option>
-            <option value="Feburary">Feburary</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
+            <option disabled="" selected="">Choose one...</option>
+            @foreach($months as $month)
+                <option value="{{ $month }}" @if($month == $salary->month) selected @endif>{{ $month }}</option>
+            @endforeach
         </select>
         {{-- <input type="email" name="email" id="email" class="form-control @error('email') is-invalid           
         @endif" value="{{ old('email')??'' }}">
@@ -79,9 +70,6 @@ $(document).ready(function() {
         <small class="form-text text-danger">{{ $message }}</small>       
         @enderror
     </div>
-    {{-- <button type="submit" class="btn btn-primary">
-        <i class="fas fa-user-plus fa-fw mr-1"></i>Create New Employee
-    </button> --}}
     <input type="submit"  class="btn btn-primary" value="Update">
 </form>
 </div>

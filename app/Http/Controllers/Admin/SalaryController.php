@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class SalaryController extends Controller
 {
+
+    public $months = [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -94,7 +99,9 @@ class SalaryController extends Controller
      */
     public function edit(Salary $salary)
     {
-        return view('admin.salaries.edit', compact('salary'));
+        $months = $this->months;
+
+        return view('admin.salaries.edit', compact('salary', 'months'));
     }
 
     /**
@@ -110,30 +117,19 @@ class SalaryController extends Controller
             'emp_id'    => ['required'],
             'month'   => ['required'],
             'year'   => ['required'],
-            'advanced_salary' => ['required' . $salary->id],
-
+            'advanced_salary' => ['required', 'integer'],
         ]);
-        $month = $request->month;
-        $emp_id = $request->emp_id;
-        $salaries = DB::table('salaries')
-            ->where('month', $month)
-            ->where('emp_id', $emp_id)
-            ->first();
-        if ($salaries == NULL) {
-            $salaries = new Salary;
-            $salaries->emp_id = $request->emp_id;
-            $salaries->month = $request->month;
-            $salaries->year = $request->year;
-            $salaries->advanced_salary = $request->advanced_salary;
-            $salaries->save();
-            return redirect()
-                ->route('admin.salaries.index')
-                ->with('success', 'Advanced salalry has been updated successfully!');
-        } else {
-            return redirect()
-                ->route('admin.salaries.index')
-                ->with('danger', 'Advanced salalry has been already paid in this month!');
-        }
+
+        $salary->update([
+            'emp_id' => $request->emp_id,
+            'month' => $request->month,
+            'year' => $request->year,
+            'advanced_salary' => $request->advanced_salary,
+        ]);
+
+        return redirect()
+            ->route('admin.salaries.index')
+            ->with('danger', 'Advanced salalry has been already paid in this month!');
     }
 
     /**

@@ -86,21 +86,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $data = $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
-            'email'   => ['required', 'email', 'unique:users,email' . $user->id],
+            'email'   => ['required', 'email', 'unique:users,email,' . $user->id],
             'password' => ['nullable', 'required', 'min:6', 'max:20'],
             'role' => ['required', 'numeric', 'min:0', 'max:2'],
-
         ]);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if (!empty($request->password))
-            $user->password = bcrypt($request->password);
-        $user->role = $request->role;
-        $user->save();
 
-        // $user->update($request->only(['name', 'email', 'password', 'role']));
+
+        if (empty($request->password)) {
+            $data['password'] = bcrypt($request->password);
+        } else {
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
         return redirect()
             ->route('admin.users.index')
             ->with('success', 'User has been update successfully!');
