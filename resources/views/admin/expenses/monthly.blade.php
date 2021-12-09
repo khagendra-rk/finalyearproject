@@ -14,18 +14,18 @@ function deleteExpense(id){
 @section('content')
 <x-alert/>
 <div class="d-flex justify-content-center">
-    <a href="{{ route('admin.expenses.january') }}" class="btn btn-sm btn-light border border-info .px-3">January</a>
-    <a href="{{ route('admin.expenses.february') }}" class="btn btn-sm btn-light border border-info">February</a>
-    <a href="{{ route('admin.expenses.march') }}" class="btn btn-sm btn-light border border-info">March</a>
-    <a href="{{ route('admin.expenses.april') }}" class="btn btn-sm btn-light border border-info">April</a>
-    <a href="{{ route('admin.expenses.may') }}" class="btn btn-sm btn-light border border-info">May</a>
-    <a href="{{ route('admin.expenses.june') }}" class="btn btn-sm btn-light border border-info">June</a>
-    <a href="{{ route('admin.expenses.july') }}" class="btn btn-sm btn-light border border-info">July</a>
-    <a href="{{ route('admin.expenses.august') }}" class="btn btn-sm btn-light border border-info">August</a>
-    <a href="{{ route('admin.expenses.september') }}" class="btn btn-sm btn-light border border-info">September</a>
-    <a href="{{ route('admin.expenses.october') }}" class="btn btn-sm btn-light border border-info">October</a>
-    <a href="{{ route('admin.expenses.november') }}" class="btn btn-sm btn-light border border-info">November</a>
-    <a href="{{ route('admin.expenses.december') }}" class="btn btn-sm btn-light border border-info">December</a>
+    <a href="{{ route('admin.expenses.january') }}" class="btn btn-sm btn-light border border-info mr-1">January</a>
+    <a href="{{ route('admin.expenses.february') }}" class="btn btn-sm btn-light border border-info mr-1">February</a>
+    <a href="{{ route('admin.expenses.march') }}" class="btn btn-sm btn-light border border-info mr-1">March</a>
+    <a href="{{ route('admin.expenses.april') }}" class="btn btn-sm btn-light border border-info mr-1">April</a>
+    <a href="{{ route('admin.expenses.may') }}" class="btn btn-sm btn-light border border-info mr-1">May</a>
+    <a href="{{ route('admin.expenses.june') }}" class="btn btn-sm btn-light border border-info mr-1">June</a>
+    <a href="{{ route('admin.expenses.july') }}" class="btn btn-sm btn-light border border-info mr-1">July</a>
+    <a href="{{ route('admin.expenses.august') }}" class="btn btn-sm btn-light border border-info mr-1">August</a>
+    <a href="{{ route('admin.expenses.september') }}" class="btn btn-sm btn-light border border-info mr-1">September</a>
+    <a href="{{ route('admin.expenses.october') }}" class="btn btn-sm btn-light border border-info mr-1">October</a>
+    <a href="{{ route('admin.expenses.november') }}" class="btn btn-sm btn-light border border-info mr-1">November</a>
+    <a href="{{ route('admin.expenses.december') }}" class="btn btn-sm btn-light border border-info mr-1">December</a>
 </div>
    <div class="card">
        <div class="card-header">

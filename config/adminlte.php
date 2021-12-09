@@ -441,17 +441,17 @@ return [
         ],
         [
             'text' => 'Attendance',
-            'url'  => '/admin/attandances',
+            'url'  => '/admin/attendances',
             'icon' => 'nav-icon fas fa-fw fa-user-times',
             'submenu' => [
                 [
                     'text' => "Take Attandances",
-                    'url' => '/admin/attandances',
+                    'url' => '/admin/attendances/take',
                     'icon' => 'nav-icon fas fa-fw fa-plus',
                 ],
                 [
                     'text' => 'View All Attandances',
-                    'url' => '/admin/sales',
+                    'url' => '/admin/attendances',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
             ]

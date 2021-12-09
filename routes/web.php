@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\admin\ExpenseController;
 use App\Http\Controllers\Admin\SupplierController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,10 +45,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('salaries', SalaryController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('products', ProductController::class);
+
         //<-----Today, Monlty, Yearly Expenses route are here------>
         Route::get('expenses/today', [ExpenseController::class, 'todayExpense'])->name('expenses.today');
         Route::get('expenses/monthly', [ExpenseController::class, 'monthlyExpense'])->name('expenses.monthly');
         Route::get('expenses/yearly', [ExpenseController::class, 'yearlyExpense'])->name('expenses.yearly');
+
         //<-----Monthly expenses route are here------>
         Route::get('expenses/january', [ExpenseController::class, 'januaryExpense'])->name('expenses.january');
         Route::get('expenses/february', [ExpenseController::class, 'februaryExpense'])->name('expenses.february');
@@ -60,7 +64,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('expenses/october', [ExpenseController::class, 'octoberExpense'])->name('expenses.october');
         Route::get('expenses/november', [ExpenseController::class, 'novemberExpense'])->name('expenses.november');
         Route::get('expenses/december', [ExpenseController::class, 'decemberExpense'])->name('expenses.december');
+
         //<-----Expense route is here----->
         Route::resource('expenses', ExpenseController::class);
+
+        //<---Attendance route are here---->
+
     });
 });
