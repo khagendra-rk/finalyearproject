@@ -125,11 +125,109 @@ class ExpenseController extends Controller
             ->route('admin.expenses.index')
             ->with('success', 'Expenses has been deleted succesfully!');
     }
-    public function TodayExpense()
+    public function todayExpense()
     {
         $date = date('d/m/y');
         $today = DB::table('expenses')->where('date', $date)->get();
         $sum = DB::table('expenses')->where('date', $date)->sum('amount');
         return view("admin.expenses.today", compact('today', 'sum'));
+    }
+    public function monthlyExpense()
+    {
+        $month = date("F");
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function yearlyExpense()
+    {
+        $year = date("Y");
+        $expense = DB::table('expenses')->where('year', $year)->get();
+        $sum = DB::table('expenses')->where('year', $year)->sum('amount');
+        return view("admin.expenses.yearly", compact('expense', 'sum'));
+    }
+    public function januaryExpense()
+    {
+        $month = "January";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function februaryExpense()
+    {
+        $month = "February";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function marchExpense()
+    {
+        $month = "March";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function aprilExpense()
+    {
+        $month = "April";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function mayExpense()
+    {
+        $month = "May";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function juneExpense()
+    {
+        $month = "June";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function julyExpense()
+    {
+        $month = "July";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function augustExpense()
+    {
+        $month = "August";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function septemberExpense()
+    {
+        $month = "September";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function OctoberExpense()
+    {
+        $month = "October";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function novemberExpense()
+    {
+        $month = "November";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
+    }
+    public function decemberExpense()
+    {
+        $month = "December";
+        $expense = DB::table('expenses')->where('month', $month)->get();
+        $sum = DB::table('expenses')->where('month', $month)->sum('amount');
+        return view("admin.expenses.monthly", compact('expense', 'sum'));
     }
 }

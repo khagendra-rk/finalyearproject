@@ -145,7 +145,7 @@ class SalaryController extends Controller
             ->route('admin.salaries.index')
             ->with('success', 'Advanced Salary has been deleted succesfully!');
     }
-    public function PaySalary()
+    public function paySalary()
     {
         $salaries = Salary::with('employee')->get();
         return view('admin.salaries.pay', compact('salaries'));
