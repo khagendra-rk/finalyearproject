@@ -53,7 +53,6 @@ class ExpenseController extends Controller
         $expense->month = $request->month;
         $expense->date = $request->date;
         $expense->year = $request->year;
-
         $expense->save();
         return redirect()
             ->route('admin.expenses.index')
@@ -99,13 +98,11 @@ class ExpenseController extends Controller
             'year' => ['required'],
 
         ]);
-        $expense = new Expense();
         $expense->details = $request->details;
         $expense->amount = $request->amount;
         $expense->month = $request->month;
         $expense->date = $request->date;
         $expense->year = $request->year;
-
         $expense->save();
         return redirect()
             ->route('admin.expenses.index')

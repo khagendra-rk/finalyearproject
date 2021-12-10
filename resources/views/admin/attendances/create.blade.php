@@ -13,53 +13,51 @@ function deleteEmployee(id){
 @endsection
 @section('content')
 <x-alert/>
+<div class="card">
+<h2 class="font-italic font-weight-bold text-info" align="center">Today: {{ date("d/M/Y") }}</h2>
+</div>
+
    <div class="card">
        <div class="card-header">
-           <h3 class="card-title" style="font-size: 1.5em;font-weight:bold">All Employees</h3>
+           <h3 class="card-title" style="font-size: 1.5em;font-weight:bold">Take Attendance</h3>
            <div class="card-tools">
-               <a class="btn btn-info btn-sm" href="{{ route('admin.employees.create') }}">
-                <i class="fas fa-user-plus fa-fw mr-1"></i>Add New</a>
-           </div>
+            <a class="btn btn-success btn-sm" href="{{ route('admin.attendances.index') }}">
+              <i class="fas fa-eye fa-fw mr-1"></i>All Attendance</a>
+        </div>
        </div>
        <div class="card-body">
            <table class="table">
+            @php
+            $employees=DB::table('employees')->get();
+            @endphp
                <thead>
                    <tr>
-                       <th>ID</th>
                        <th>Name</th>
-                       <th>Email</th>
                        <th>Phone</th>
-                       <th>Address</th>
-                       <th>Salary</th>
-                       <th>Experience</th>
-                       <th>Edit</th>
-                       <th>Delete</th>
+                       <th>Status</th>
                    </tr>
                </thead>
                <tbody>
+                   <form action="{{ route('admin.attendances.store') }}" method="POST">
+                    @csrf
                @foreach ($employees as $employee )
                <tr>
-                   <td>{{ $employee->id }}</td>
                    <td>{{ $employee->name }}</td>
-                   <td>{{ $employee->email }}</td> 
                    <td>{{ $employee->phone }}</td>
-                   <td>{{ $employee->address }}</td>
-                   <td>{{ $employee->salary }}</td>
-                   <td>{{ $employee->experience }}</td>
                    <td>
-                    <a href="{{ route('admin.employees.edit',$employee->id) }}">Edit</a>
-                </td>
-                <td>
-                 <a href="#" onclick="deleteEmployee({{ $employee->id  }})">Delete</a>
-                 <form  style="display:none" method="POST" id="delete-{{ $employee->id }}" action="{{ route('admin.employees.destroy',$employee->id) }}">
-                     @csrf
-                     @method('DELETE')
-                 </form>
+                    <input type="hidden" name="employee_id[]" value="{{ $employee->id }}">
+                    <input type="hidden" name="attendance_date" value="{{ date("d/m/y") }}">
+                    <input type="hidden" name="attendance_month" value="{{ date("M") }}">
+                    <input type="hidden" name="attendance_year" value="{{ date("Y") }}">
+                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Present" required>Present&nbsp;&nbsp;
+                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Absent" required>Absent                    
                 </td>
                </tr>
-               @endforeach    
+               @endforeach  
             </tbody>                     
            </table>
+       <button type="submit" class="btn btn-info">Take Attendance</button>
+    </form>  
        </div>
    </div>
 @stop

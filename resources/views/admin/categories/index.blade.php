@@ -26,7 +26,7 @@ function deleteCategory(id){
                <thead>
                    <tr>
                        <th>ID</th>
-                       <th> Category Name</th>
+                       <th>Category Name</th>
                        <th>Edit</th>
                        <th>Delete</th>
                    </tr>

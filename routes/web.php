@@ -69,6 +69,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('expenses', ExpenseController::class);
 
         //<---Attendance route are here---->
-
+        Route::get('attendances/view', [AttendanceController::class], 'viewAttendance')->name('attendances.view');
+        Route::resource('attendances', AttendanceController::class);
     });
 });

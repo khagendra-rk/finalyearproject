@@ -9,7 +9,7 @@
 
    <div class="card">
        <div class="card-header">
-           <h3 class="card-title" style="font-size: 1.5em;font-weight:bold">Update Attendance</h3>
+           <h3 class="card-title" style="font-size: 1.5em;font-weight:bold">View Attendance</h3>
            <div class="card-tools">
             <a class="btn btn-success btn-sm" href="{{ route('admin.attendances.index') }}">
               <i class="fas fa-eye fa-fw mr-1"></i>All Attendance</a>
@@ -28,8 +28,6 @@
                    </tr>
                </thead>
                <tbody>
-                   <form action="{{ route('admin.attendances.update') }}" method="POST">
-                    @csrf
                @foreach ($employees as $employee )
                <tr>
                    <td>{{ $employee->name }}</td>
@@ -39,15 +37,13 @@
                     <input type="hidden" name="attendance_date" value="{{ date("d/m/y") }}">
                     <input type="hidden" name="attendance_month" value="{{ date("M") }}">
                     <input type="hidden" name="attendance_year" value="{{ date("Y") }}">
-                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Present" required @if($employee->attendance=='Present'){echo "checked"} @if($employee->attendance=='Present'){echo "checked"} @endif>Present&nbsp;&nbsp;
-                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Absent" required @if($employee->attendance=='Absent'){echo "checked"}>Absent                    
+                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Present" disabled @if($employee->attendance=='Present'){echo "checked"} @if($employee->attendance=='Present'){echo "checked"} @endif>Present&nbsp;&nbsp;
+                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Absent" disabled @if($employee->attendance=='Absent'){echo "checked"}>Absent                    
                 </td>
                </tr>
                @endforeach  
             </tbody>                     
            </table>
-       <button type="submit" class="btn btn-info">Update Attendance</button>
-    </form>  
        </div>
    </div>
 @stop

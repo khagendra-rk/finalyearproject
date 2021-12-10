@@ -446,12 +446,17 @@ return [
             'submenu' => [
                 [
                     'text' => "Take Attandances",
-                    'url' => '/admin/attendances/take',
+                    'url' => '/admin/attendances/create',
                     'icon' => 'nav-icon fas fa-fw fa-plus',
                 ],
                 [
                     'text' => 'View All Attandances',
                     'url' => '/admin/attendances',
+                    'icon' => 'nav-icon fas fa-fw fa-eye',
+                ],
+                [
+                    'text' => 'Monthly Attandances',
+                    'url' => '/admin/attendances/view',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
             ]
