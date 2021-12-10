@@ -373,7 +373,7 @@ return [
                 ],
                 [
                     'text' => 'Import Products',
-                    'url' => '/admin/products',
+                    'url' => '/admin/products/import-products',
                     'icon' => 'nav-icon fas fa-fw fa-file-import',
                 ],
             ]
@@ -456,7 +456,7 @@ return [
                 ],
                 [
                     'text' => 'Monthly Attandances',
-                    'url' => '/admin/attendances/view',
+                    'url' => '/admin/attendances/monthly',
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
             ]

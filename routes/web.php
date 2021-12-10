@@ -44,6 +44,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('salaries/pay', [SalaryController::class, 'paySalary'])->name('salaries.pay');
         Route::resource('salaries', SalaryController::class);
         Route::resource('categories', CategoryController::class);
+        // <------Products routes are here---->>
+        Route::get('products/import-products', [ProductController::class, 'importProduct'])->name('products.import-products');
+        Route::get('products/export', [ProductController::class, 'export'])->name('products.export');
+        Route::post('products/import', [ProductController::class, 'import'])->name('products.import');
         Route::resource('products', ProductController::class);
 
         //<-----Today, Monlty, Yearly Expenses route are here------>

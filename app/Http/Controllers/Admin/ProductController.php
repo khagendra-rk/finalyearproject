@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Exports\ProductsExport;
+use App\Http\Controllers\Controller;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -133,5 +136,20 @@ class ProductController extends Controller
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'Products has been deleted succesfully!');
+    }
+    public function importProduct()
+    {
+        return view('admin.products.import');
+    }
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+    public function import(Request $request)
+    {
+        $import = Excel::import(new ProductsImport, $request->file('import_file'));
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Products import succesfully!');
     }
 }

@@ -137,7 +137,11 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Attendance $attendance)
-    {
-        //
+    { {
+            $attendance->delete();
+            return redirect()
+                ->route('admin.attendances.index')
+                ->with('success', 'Attendance has been deleted succesfully!');
+        }
     }
 }
