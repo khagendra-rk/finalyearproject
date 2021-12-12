@@ -28,31 +28,19 @@ function deleteAttendance(edit_date){
                        <th>S.N</th>
                        <th>Edit Date</th>
                        <th>Edit</th>
-                       <th>Delete</th>
-                       <th>View</th>
                    </tr>
                </thead>
                <tbody>
                    @php
                        $count=1
                    @endphp
-               @foreach ($attendances as $attendance )
+               @foreach ($attendances as $attendance)
                <tr>
                    <td>{{ $count++}}</td>
                    <td>{{ $attendance->edit_date }}</td>
                    <td>
-                    <a href="{{ route('admin.attendances.edit',$attendance->edit_date) }}">Edit</a>
-                </td>
-                <td>
-                 <a href="#" onclick="deleteAttendance({{ $attendance->edit_date  }})">Delete</a>
-                 <form  style="display:none" method="POST" id="delete-{{ $attendance->edit_date }}" action="{{ route('admin.attendances.destroy',$attendance->edit_date) }}">
-                     @csrf
-                     @method('DELETE')
-                 </form>
-                </td>
-                <td>
-                    <a href="{{ route('admin.attendances.view',$attendance->edit_date) }}">View</a>
-                </td>
+                    <a href="{{ route('admin.attendance.edit', ['date' => $attendance->edit_date]) }}">View & Edit</a>
+                   </td>
                </tr>
                @endforeach    
             </tbody>                     

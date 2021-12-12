@@ -240,7 +240,7 @@ return [
         ],
         [
             'text' => 'POS',
-            'url'  => '/pos',
+            'url'  => '/admin/pos',
             'icon' => 'nav-icon fas fa-fw fa-calculator',
         ],
         [

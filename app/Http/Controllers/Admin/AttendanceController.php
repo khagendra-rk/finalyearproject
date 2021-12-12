@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Psy\Command\WhereamiCommand;
 
 class AttendanceController extends Controller
@@ -99,6 +100,42 @@ class AttendanceController extends Controller
         $data = DB::table('attendances')->where('edit_date', $attendance)->get();
         return view('admin.attendances.edit', compact('data', 'date'));
     }
+
+
+
+    public function attendanceEdit(Request $request)
+    {
+        $request->validate([
+            'date' => ['required', 'date'],
+        ]);
+
+        $attendances = Attendance::where('edit_date', $request->date)->get();
+
+        $date = $request->date;
+
+        return view('admin.attendances.attendance-edit', compact('attendances', 'date'));
+    }
+
+    public function attendanceUpdate(Request $request)
+    {
+        $request->validate([
+            'date' => ['required', 'date'],
+            'record' => ['array'],
+            'record.*.id' => ['exists:attendances,id'],
+            'record.*.status' => [Rule::in(['Present', 'Absent'])],
+        ]);
+
+        foreach ($request->record as $item) {
+            $attendance = Attendance::find($item['id']);
+            if ($attendance) {
+                $attendance->update(['status' => $item['status']]);
+            }
+        }
+
+        return redirect()->route('admin.attendances.index')
+            ->with('success', 'Attendance Details Updated!');
+    }
+
 
     /**
      * Update the specified resource in storage.

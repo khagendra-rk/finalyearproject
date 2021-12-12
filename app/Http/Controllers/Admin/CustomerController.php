@@ -59,6 +59,13 @@ class CustomerController extends Controller
         $customer->account_number = $request->account_number;
         $customer->account_holder = $request->account_holder;
         $customer->save();
+
+        if (!empty($request->redirect) && $request->redirect == "pos") {
+            return redirect()
+                ->route('admin.pos.index')
+                ->with('success', 'Customer has been added successfully!');
+        }
+
         return redirect()
             ->route('admin.customers.index')
             ->with('success', 'Customer has been added successfully!');

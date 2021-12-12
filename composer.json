@@ -9,8 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "bumbummen99/shoppingcart": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "illuminate/events": "^8.75",
+        "illuminate/session": "^8.75",
+        "illuminate/support": "^8.75",
         "jeroennoten/laravel-adminlte": "^3.7",
         "laravel/fortify": "^1.8",
         "laravel/framework": "^8.65",

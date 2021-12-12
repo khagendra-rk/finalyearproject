@@ -5,12 +5,14 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\admin\ExpenseController;
+use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\SupplierController;
 
 
@@ -37,6 +39,16 @@ Route::get('/logout', [SiteController::class, 'logout']);
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::middleware('can:update-users')->group(function () {
+        // <----Pos routes are here--->
+        Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
+        // <----Cart Controller route are here---->compact
+        Route::post('/add-cart', [CartController::class, 'addCart'])->name('cart.add');
+        Route::post('/update-cart/{rowId}', [CartController::class, 'updateCart'])->name('cart.update');
+        Route::get('/remove-cart/{rowId}', [CartController::class, 'removeCart'])->name('cart.remove');
+        Route::post('/create-invoice', [CartController::class, 'createInvoice'])->name('create.invoice');
+
+
+
         Route::resource('users', UserController::class)->middleware('can:update-users');
         Route::resource('employees', EmployeeController::class);
         Route::resource('customers', CustomerController::class);
@@ -73,7 +85,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('expenses', ExpenseController::class);
 
         //<---Attendance route are here---->
-        Route::get('attendances/view', [AttendanceController::class], 'viewAttendance')->name('attendances.view');
+        Route::get('/attendaces/edit', [AttendanceController::class, 'attendanceEdit'])->name('attendance.edit');
+        Route::post('/attendaces/edit', [AttendanceController::class, 'attendanceUpdate'])->name('attendance.update');
+        Route::get('attendances/view', [AttendanceController::class, 'viewAttendance'])->name('attendances.view');
         Route::resource('attendances', AttendanceController::class);
     });
 });

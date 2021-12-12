@@ -33,7 +33,7 @@ $(document).ready(function() {
     {{-- <button type="submit" class="btn btn-primary">
         <i class="fas fa-user-plus fa-fw mr-1"></i>Create New Customer
     </button> --}}
-    <input type="submit"  class="btn btn-primary" value="Create New Customer">
+    <input type="submit"  class="btn btn-primary" value="Create">
 </form>
 </div>
 @stop 
