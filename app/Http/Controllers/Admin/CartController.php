@@ -55,4 +55,37 @@ class CartController extends Controller
         $products = DB::table('products')->get();
         return view("admin.pos.invoice", compact('customer', 'contents', 'products'));
     }
+    public function finalInvoice(Request $request)
+    {
+        $data = array();
+        $data['customer_id'] = $request->customer_id;
+        $data['order_date'] = $request->order_date;
+        $data['order_status'] = $request->order_status;
+        $data['total_products'] = $request->total_products;
+        $data['sub_total'] = $request->sub_total;
+        $data['vat'] = $request->vat;
+        $data['total'] = $request->total;
+        $data['payment_status'] = $request->payment_status;
+        $data['pay'] = $request->pay;
+        $data['due'] = $request->due;
+
+        $order_id = DB::table('orders')->insertGetId($data);
+        $contents = Cart::content();
+        $odata = array();
+        foreach ($contents as $content) {
+            $odata['order_id'] = $order_id;
+            $odata['product_id'] = $content->id;
+            $odata['quantity'] = $content->qty;
+            $odata['rate'] = $content->price;
+            $odata['total'] = $content->total;
+
+            $insert = DB::table('orderdetails')->insert($odata);
+        }
+        if ($insert) {
+            Cart::destroy();
+            return redirect()
+                ->route('admin.pos.index')
+                ->with('success', 'Invoice created successfully! || Please deliver the products and accept status');
+        }
+    }
 }

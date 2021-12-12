@@ -46,6 +46,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::post('/update-cart/{rowId}', [CartController::class, 'updateCart'])->name('cart.update');
         Route::get('/remove-cart/{rowId}', [CartController::class, 'removeCart'])->name('cart.remove');
         Route::post('/create-invoice', [CartController::class, 'createInvoice'])->name('create.invoice');
+        Route::post('/final-invoice', [CartController::class, 'finalInvoice'])->name('final.invoice');
+
 
 
 

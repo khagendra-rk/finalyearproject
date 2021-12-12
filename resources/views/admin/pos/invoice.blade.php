@@ -10,6 +10,7 @@ $(document).ready(function() {
 </script>
 @endsection
 @section('content')
+<x-alert/>
 <div class="invoice p-3 mb-3">
     <!-- title row -->
     <div class="row">
@@ -137,10 +138,81 @@ $(document).ready(function() {
     <div class="row no-print">
       <div class="col-12">
         <a href="#"  onclick="window.print()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-        <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-lg"><i class="far fa-credit-card"></i> Submit
           Payment
         </button>
       </div>
     </div>
   </div>
+
+
+  <!----payable model is here---->
+  <form action="{{ route('admin.final.invoice') }}" method="post">
+    @csrf
+    <input type="hidden" name="redirect" value="pos">
+    
+  <div class="modal fade" id="modal-lg">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h4 class="modal-title">Invoice of {{ $customer->name }}<span class="text-danger align-end">Total: {{ Cart::total() }}</span></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <x-alert/>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="payment" class="control-label">Payment</label>                          
+                          <select class="form-control" name="payment_status">
+                            <option value="handcash">Handcash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="card_payment">Card Payment</option>
+                            <option value="due">Due</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="pay" class="control-label">Pay</label>
+                          <input type="text" name="pay" class="form-control @error('pay') is-invalid           
+                          @endif" value="{{ old('pay')??'' }}">
+                          @error('pay')
+                          <small class="form-text text-danger">{{ $message }}</small>       
+                          @enderror
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="due" class="control-label">Due</label>
+                          <input type="text" name="due"class="form-control @error('due') is-invalid           
+                          @endif" value="{{ old('due')??'' }}">
+                          @error('due')
+                          <small class="form-text text-danger">{{ $message }}</small>       
+                          @enderror
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+          <input type="hidden" name="order_date" value="{{ date('d/m/Y') }}">
+          <input type="hidden" name="order_status" value="pending">
+          <input type="hidden" name="total_products" value="{{ Cart::count() }}">
+          <input type="hidden" name="sub_total" value="{{ Cart::subtotal() }}">
+          <input type="hidden" name="vat" value="{{ Cart::tax() }}">
+          <input type="hidden" name="total" value="{{ Cart::total() }}">
+
+
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  </form>
 @stop 
