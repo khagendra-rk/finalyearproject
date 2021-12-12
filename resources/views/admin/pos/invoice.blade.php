@@ -66,42 +66,26 @@ $(document).ready(function() {
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Qty</th>
+            <th>S.N</th>
             <th>Product</th>
-            <th>Serial #</th>
-            <th>Description</th>
-            <th>Subtotal</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Amount</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>1</td>
-            <td>Call of Duty</td>
-            <td>455-981-221</td>
-            <td>El snort testosterone trophy driving gloves handsome</td>
-            <td>$64.50</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Need for Speed IV</td>
-            <td>247-925-726</td>
-            <td>Wes Anderson umami biodiesel</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Monsters DVD</td>
-            <td>735-845-642</td>
-            <td>Terry Richardson helvetica tousled street art master</td>
-            <td>$10.70</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Grown Ups Blue Ray</td>
-            <td>422-568-642</td>
-            <td>Tousled lomo letterpress</td>
-            <td>$25.99</td>
-          </tr>
+            @php
+              $sn=1
+            @endphp
+            @foreach ($contents as $content )
+            <tr>
+              <td>{{ $sn++ }}</td>
+              <td>{{ $content->name }}</td>
+              <td>{{$content->qty  }}</td>
+              <td>{{ $content->price }}</td>
+              <td>{{ $content->price*$content->qty }}</td>
+            </tr>              
+            @endforeach         
           </tbody>
         </table>
       </div>
@@ -112,7 +96,7 @@ $(document).ready(function() {
     <div class="row">
       <!-- accepted payments column -->
       <div class="col-6">
-        <p class="lead">Payment Methods:</p>
+        {{-- <p class="lead">Payment Methods:</p>
         <img src="../../dist/img/credit/visa.png" alt="Visa">
         <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
         <img src="../../dist/img/credit/american-express.png" alt="American Express">
@@ -122,7 +106,7 @@ $(document).ready(function() {
           Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
           plugg
           dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-        </p>
+        </p> --}}
       </div>
       <!-- /.col -->
       <div class="col-6">
@@ -132,19 +116,15 @@ $(document).ready(function() {
           <table class="table">
             <tbody><tr>
               <th style="width:50%">Subtotal:</th>
-              <td>$250.30</td>
+              <td>{{ Cart::subtotal() }}</td>
             </tr>
             <tr>
-              <th>Tax (9.3%)</th>
-              <td>$10.34</td>
-            </tr>
-            <tr>
-              <th>Shipping:</th>
-              <td>$5.80</td>
+              <th>Tax (13%)</th>
+              <td>{{ Cart::tax() }}</td>
             </tr>
             <tr>
               <th>Total:</th>
-              <td>$265.24</td>
+              <td>{{ Cart::total() }}</td>
             </tr>
           </tbody></table>
         </div>
@@ -156,12 +136,9 @@ $(document).ready(function() {
     <!-- this row will not appear when printing -->
     <div class="row no-print">
       <div class="col-12">
-        <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+        <a href="#"  onclick="window.print()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
         <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
           Payment
-        </button>
-        <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-          <i class="fas fa-download"></i> Generate PDF
         </button>
       </div>
     </div>

@@ -52,6 +52,7 @@ class CartController extends Controller
         $id = $request->id;
         $customer = DB::table('customers')->where('id', $id)->first();
         $contents = Cart::content();
-        return view("admin.pos.invoice", compact('customer', 'contents'));
+        $products = DB::table('products')->get();
+        return view("admin.pos.invoice", compact('customer', 'contents', 'products'));
     }
 }
