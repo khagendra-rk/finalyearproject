@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\AttendanceController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/home', [SiteController::class, 'home'])->middleware('auth');
