@@ -135,7 +135,6 @@
     </div>
     <!---Customer model are here--->
     <form action="{{ route('admin.customers.store') }}" method="post">
-
       <input type="hidden" name="redirect" value="pos">
       @csrf
     <div class="modal fade" id="modal-lg">

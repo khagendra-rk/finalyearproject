@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'invoice')
+@section('title', 'Invoice')
 @section('plugins.Select2',true)
 @section('js')
 <script>
@@ -17,7 +17,7 @@ $(document).ready(function() {
       <div class="col-12">
         <h4>
           <i class="fas fa-globe"></i> Inventory Management System, FinalYearProject.
-          <small class="float-right">Date: {{ date('d/M/Y') }}</small>
+          <small class="float-right">Order Date: {{ $order->order_date }}</small>
         </h4>
       </div>
       <!-- /.col -->
@@ -38,24 +38,22 @@ $(document).ready(function() {
       <div class="col-sm-4 invoice-col">
         To
         <address>
-          <strong>Name: {{ $customer->name }}</strong><br>
-          Shop Name: {{ $customer->shopname }}<br>
-          Address: {{ $customer->address }}<br>
-          Phone: {{ $customer->phone }}<br>
-          Email: {{ $customer->email }}
+          <strong>Name: {{ $order->name }}</strong><br>
+          Shop Name: {{ $order->shopname }}<br>
+          Address: {{ $order->address }}<br>
+          Phone: {{ $order->phone }}<br>
+          Email: {{ $order->email }}
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
         <b>Invoice #007612</b><br>
-        <b>Order Date:</b> {{ date("jS \ F Y") }}<br>
+        <b>Today Date:</b> {{ date("d/M/Y") }}<br>
         {{-- @php
             $order=DB::table('orders')->select('id')->first();
         @endphp --}}
-        <b>Order ID:</b> {{-- {{ $order++ }} --}}4F3S8J<br>
+        <b>Order ID:</b> {{ $order->id }}<br>
         <b>Order status:</b> <span class="badge badge-danger">Pending</span><br>
-        <b>Bank Name:</b> {{ $customer->bank_name }}<br>
-        <b>Account No. :</b> {{ $customer->account_number }}
       </div>
       <!-- /.col -->
     </div>
@@ -69,6 +67,7 @@ $(document).ready(function() {
           <tr>
             <th>S.N</th>
             <th>Product</th>
+            <th>Product Code</th>
             <th>Qty</th>
             <th>Rate</th>
             <th>Amount</th>
@@ -78,13 +77,14 @@ $(document).ready(function() {
             @php
               $sn=1
             @endphp
-            @foreach ($contents as $content )
+            @foreach ($order_details as $row )
             <tr>
               <td>{{ $sn++ }}</td>
-              <td>{{ $content->name }}</td>
-              <td>{{$content->qty  }}</td>
-              <td>{{ $content->price }}</td>
-              <td>{{ $content->price*$content->qty }}</td>
+              <td>{{ $row->product_name }}</td>
+              <td>{{ $row->product_code }}</td>
+              <td>{{$row->quantity  }}</td>
+              <td>{{ $row->rate }}</td>
+              <td>{{ $row->rate*$row->quantity }}</td>
             </tr>              
             @endforeach         
           </tbody>
@@ -97,35 +97,27 @@ $(document).ready(function() {
     <div class="row">
       <!-- accepted payments column -->
       <div class="col-6">
-        {{-- <p class="lead">Payment Methods:</p>
-        <img src="../../dist/img/credit/visa.png" alt="Visa">
-        <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-        <img src="../../dist/img/credit/american-express.png" alt="American Express">
-        <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+        <p class="lead">Payment Methods: <b>{{ strtoupper($order->payment_status)  }}</b></p>
+        <p class="lead">Payment Amount: <b>{{ strtoupper($order->pay)  }}</b></p>
+        <p class="lead">Amount Due: {{ $order->due }}</p>
 
-        <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-          plugg
-          dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-        </p> --}}
+
       </div>
       <!-- /.col -->
       <div class="col-6">
-        <p class="lead">Amount Due 2/22/2014</p>
-
-        <div class="table-responsive">
+         <div class="table-responsive">
           <table class="table">
             <tbody><tr>
               <th style="width:50%">Subtotal:</th>
-              <td>{{ Cart::subtotal() }}</td>
+              <td>{{ $order->sub_total }}</td>
             </tr>
             <tr>
               <th>Tax (13%)</th>
-              <td>{{ Cart::tax() }}</td>
+              <td>{{ $order->vat }}</td>
             </tr>
             <tr>
               <th>Total:</th>
-              <td>{{ Cart::total() }}</td>
+              <td>{{ $order->total }}</td>
             </tr>
           </tbody></table>
         </div>
@@ -133,21 +125,22 @@ $(document).ready(function() {
       <!-- /.col -->
     </div>
     <!-- /.row -->
-
+    @if ($order->order_status=='success')
+    @else
     <!-- this row will not appear when printing -->
     <div class="row no-print">
       <div class="col-12">
         <a href="#"  onclick="window.print()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-lg"><i class="far fa-credit-card"></i> Submit
-          Payment
+        <a href="{{ route('admin.orders.confirm',$order->id) }}" class="btn btn-success float-right"><i class="far fa-credit-card"></i>Done</a>
         </button>
       </div>
     </div>
   </div>
+    @endif
 
 
   <!----payable model is here---->
-  <form action="{{ route('admin.final.invoice') }}" method="post">
+  {{-- <form action="{{ route('admin.final.invoice') }}" method="post">
     @csrf
     <input type="hidden" name="redirect" value="pos">
     
@@ -214,5 +207,5 @@ $(document).ready(function() {
       </div>
       <!-- /.modal-dialog -->
     </div>
-  </form>
+  </form> --}}
 @stop 

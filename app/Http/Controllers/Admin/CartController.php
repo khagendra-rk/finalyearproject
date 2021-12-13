@@ -84,7 +84,7 @@ class CartController extends Controller
         if ($insert) {
             Cart::destroy();
             return redirect()
-                ->route('admin.pos.index')
+                ->route('admin.pending.orders')
                 ->with('success', 'Invoice created successfully! || Please deliver the products and accept status');
         }
     }

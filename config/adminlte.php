@@ -411,13 +411,13 @@ return [
             'icon' => 'nav-icon fas fa-fw fa-cart-plus',
             'submenu' => [
                 [
-                    'text' => "Pending Orders",
-                    'url' => '/admin/orders',
+                    'text' => 'Pending Orders',
+                    'url' => '/admin/pending-orders',
                     'icon' => 'nav-icon fas fa-fw fa-toggle-off',
                 ],
                 [
                     'text' => 'Success Orders',
-                    'url' => '/admin/orders',
+                    'url' => '/admin/success-orders',
                     'icon' => 'nav-icon fas fa-fw fa-toggle-on',
                 ],
             ]

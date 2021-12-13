@@ -2,18 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\PosController;
+use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AttendanceController;
-use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\SalaryController;
+use App\Http\Controllers\admin\ExpenseController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\admin\ExpenseController;
-use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\AttendanceController;
 
 
 /*
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::middleware('can:update-users')->group(function () {
         // <----Pos routes are here--->
         Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
+
+
         // <----Cart Controller route are here---->compact
         Route::post('/add-cart', [CartController::class, 'addCart'])->name('cart.add');
         Route::post('/update-cart/{rowId}', [CartController::class, 'updateCart'])->name('cart.update');
@@ -91,5 +94,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::post('/attendaces/edit', [AttendanceController::class, 'attendanceUpdate'])->name('attendance.update');
         Route::get('attendances/view', [AttendanceController::class, 'viewAttendance'])->name('attendances.view');
         Route::resource('attendances', AttendanceController::class);
+
+        //<---orders route are here---->
+        Route::get('/pending-orders', [OrderController::class, 'pendingOrder'])->name('pending.orders');
+        Route::get('/success-orders', [OrderController::class, 'successOrder'])->name('success.orders');
+        Route::get('/order-status/{id}', [OrderController::class, 'viewOrder'])->name('orders.status');
+        Route::get('/order-confirm/{id}', [OrderController::class, 'confirmOrder'])->name('orders.confirm');
     });
 });
