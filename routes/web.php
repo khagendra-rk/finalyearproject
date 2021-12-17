@@ -31,8 +31,8 @@ use App\Http\Controllers\Admin\OrderController;
 //     return view('index');
 // });
 
-Route::get('/home', [SiteController::class, 'home'])->middleware('auth');
-Route::get('/logout', [SiteController::class, 'logout']);
+Route::get('/', [SiteController::class, 'home'])->middleware('auth');
+Route::get('/logout', [SiteController::class, 'logout'])->name('logout');
 
 
 //Admin Routes
