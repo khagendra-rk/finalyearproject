@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\UserController;
@@ -15,7 +14,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\AttendanceController;
-
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +27,9 @@ use App\Http\Controllers\Admin\AttendanceController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::get('/home', [SiteController::class, 'home'])->middleware('auth');
 Route::get('/logout', [SiteController::class, 'logout']);

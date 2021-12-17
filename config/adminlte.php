@@ -422,23 +422,23 @@ return [
                 ],
             ]
         ],
-        [
-            'text' => 'Sales Report',
-            'url'  => '/admin/sales',
-            'icon' => 'nav-icon fas fa-fw fa-poll-h',
-            'submenu' => [
-                [
-                    'text' => "Add Sales",
-                    'url' => '/admin/sales',
-                    'icon' => 'nav-icon fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'View All Sales',
-                    'url' => '/admin/sales',
-                    'icon' => 'nav-icon fas fa-fw fa-eye',
-                ],
-            ]
-        ],
+        // [
+        //     'text' => 'Sales Report',
+        //     'url'  => '/admin/sales',
+        //     'icon' => 'nav-icon fas fa-fw fa-poll-h',
+        //     'submenu' => [
+        //         [
+        //             'text' => "Add Sales",
+        //             'url' => '/admin/sales',
+        //             'icon' => 'nav-icon fas fa-fw fa-plus',
+        //         ],
+        //         [
+        //             'text' => 'View All Sales',
+        //             'url' => '/admin/sales',
+        //             'icon' => 'nav-icon fas fa-fw fa-eye',
+        //         ],
+        //     ]
+        // ],
         [
             'text' => 'Attendance',
             'url'  => '/admin/attendances',
