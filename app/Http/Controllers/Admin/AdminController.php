@@ -5,16 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        // $today = date('m/d/Y');
-        // $today_sales = DB::table('orders')->where('order_date', $today)->select('total')->sum('total');
-        // echo "<pre>";
-        // print_r($today_sales);
-        // exit();
-        return view('admin.index');
+        $users_count = User::count();
+
+        return view('admin.index', compact('users_count'));
     }
 }
