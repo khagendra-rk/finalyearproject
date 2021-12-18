@@ -26,13 +26,14 @@ function deleteProduct(id){
                <thead>
                    <tr>
                        <th>Product Name</th>
-                       <th>Product Code</th>
+                       <th>Code</th>
+                       <th>Stock</th>
                        <th>Category</th>
                        <th>Supplier</th>
                        <th>Buying Date</th>
                        <th>Expire Date</th>
-                       <th>Buying price</th>
-                       <th>Selling Price</th>
+                       <th>Buy Price</th>
+                       <th>Sell Price</th>
                        <th>Edit</th>
                        <th>Delete</th>
                    </tr>
@@ -42,6 +43,7 @@ function deleteProduct(id){
                <tr>
                    <td>{{ $product->product_name}}</td>
                    <td>{{ $product->product_code}}</td>
+                   <td>{{ $product->stocks_sum_quantity ?? 0 }}</td>
                    <td>{{ $product->category->cat_name}}</td>
                    <td>{{ $product->supplier->name}}</td>
                    <td>{{ $product->buy_date}}</td>
@@ -59,8 +61,8 @@ function deleteProduct(id){
                  </form>
                 </td>
                </tr>
-               @endforeach    
-            </tbody>                     
+               @endforeach
+            </tbody>
            </table>
        </div>
    </div>

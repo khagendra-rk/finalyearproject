@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +67,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('products/import-products', [ProductController::class, 'importProduct'])->name('products.import-products');
         Route::get('products/export', [ProductController::class, 'export'])->name('products.export');
         Route::post('products/import', [ProductController::class, 'import'])->name('products.import');
+        Route::get('/products/{product}/stocks', [StockController::class, 'product'])->name('products.stock');
         Route::resource('products', ProductController::class);
+        Route::resource('stocks', StockController::class);
 
         //<-----Today, Monlty, Yearly Expenses route are here------>
         Route::get('expenses/today', [ExpenseController::class, 'todayExpense'])->name('expenses.today');
