@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Stock;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -27,6 +29,13 @@ class CartController extends Controller
     public function updateCart(Request $request, $rowId)
     {
         $qty = $request->qty;
+
+        $cart = Cart::get($rowId);
+        $product = Product::find($cart->id)->withSum('stocks', 'quantity')->first();
+        if ($product->stocks_sum_quantity < $qty) {
+            return redirect()->back()->with('error', 'There are not enough items in stock!');
+        }
+
         $update = Cart::update($rowId, $qty);
         return redirect()
             ->back()
@@ -78,7 +87,11 @@ class CartController extends Controller
             $odata['quantity'] = $content->qty;
             $odata['rate'] = $content->price;
             $odata['total'] = $content->total;
-
+            Stock::create([
+                'product_id' => $content->id,
+                'quantity' => $content->qty * -1,
+                'remarks' => 'From Order: ' . $order_id,
+            ]);
             $insert = DB::table('orderdetails')->insert($odata);
         }
         if ($insert) {

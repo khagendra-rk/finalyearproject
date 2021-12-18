@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,13 +59,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::resource('customers', CustomerController::class);
         Route::resource('suppliers', SupplierController::class);
         Route::get('salaries/pay', [SalaryController::class, 'paySalary'])->name('salaries.pay');
+        Route::post('salaries/pay', [SalaryController::class, 'payAdvance'])->name('salaries.payadvance');
+        Route::get('salaries/employee/{employee}', [SalaryController::class, 'payEmployee'])->name('salaries.employee.pay');
         Route::resource('salaries', SalaryController::class);
         Route::resource('categories', CategoryController::class);
         // <------Products routes are here---->>
         Route::get('products/import-products', [ProductController::class, 'importProduct'])->name('products.import-products');
         Route::get('products/export', [ProductController::class, 'export'])->name('products.export');
         Route::post('products/import', [ProductController::class, 'import'])->name('products.import');
+        Route::get('/products/{product}/stocks', [StockController::class, 'product'])->name('products.stock');
         Route::resource('products', ProductController::class);
+        Route::resource('stocks', StockController::class);
 
         //<-----Today, Monlty, Yearly Expenses route are here------>
         Route::get('expenses/today', [ExpenseController::class, 'todayExpense'])->name('expenses.today');
@@ -92,6 +97,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('/attendaces/edit', [AttendanceController::class, 'attendanceEdit'])->name('attendance.edit');
         Route::post('/attendaces/edit', [AttendanceController::class, 'attendanceUpdate'])->name('attendance.update');
         Route::get('attendances/view', [AttendanceController::class, 'viewAttendance'])->name('attendances.view');
+        Route::get('attendances/monthly', [AttendanceController::class, 'monthly'])->name('attendances.month');
         Route::resource('attendances', AttendanceController::class);
 
         //<---orders route are here---->

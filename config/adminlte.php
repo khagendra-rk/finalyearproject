@@ -372,6 +372,11 @@ return [
                     'icon' => 'nav-icon fas fa-fw fa-eye',
                 ],
                 [
+                    'text' => 'Product Stock',
+                    'url' => '/admin/stocks',
+                    'icon' => 'nav-icon fas fa-fw fa-stream',
+                ],
+                [
                     'text' => 'Import Products',
                     'url' => '/admin/products/import-products',
                     'icon' => 'nav-icon fas fa-fw fa-file-import',

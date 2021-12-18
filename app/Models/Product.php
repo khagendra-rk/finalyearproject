@@ -21,8 +21,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
     }
 }

@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category', 'supplier')->get();
+        $products = Product::with('category', 'supplier')->withSum('stocks', 'quantity')->get();
         return view("admin.products.index", compact('products'));
     }
 
@@ -46,8 +46,8 @@ class ProductController extends Controller
             'category_id'   => ['required'],
             'supplier_id' => ['required'],
             'product_place' => ['required'],
-            'buy_date' => ['required'],
-            'expire_date' => ['required'],
+            'buy_date' => ['required', 'date'],
+            'expire_date' => ['required', 'date', 'after:buy_date', 'after:' . now()],
             'buying_price' => ['required'],
             'selling_price' => ['required'],
         ]);

@@ -42,7 +42,7 @@ class EmployeeController extends Controller
             'email'   => ['required', 'email', 'unique:employees,email'],
             'phone' => ['required', 'max:10'],
             'address' => ['required'],
-            'salary' => ['required', 'numeric'],
+            'salary' => ['required', 'integer', 'gte:1'],
             'experience' => ['required'],
 
         ]);
@@ -95,7 +95,7 @@ class EmployeeController extends Controller
             'email'   => ['required', 'email', 'unique:employees,email,' . $employee->id],
             'phone' => ['required', 'max:10'],
             'address' => ['required'],
-            'salary' => ['required'],
+            'salary' => ['required', 'integer', 'gte:1'],
             'experience' => ['required'],
 
         ]);
