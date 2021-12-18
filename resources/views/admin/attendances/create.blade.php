@@ -47,17 +47,18 @@ function deleteEmployee(id){
                    <td>
                     <input type="hidden" name="employee_id[]" value="{{ $employee->id }}">
                     <input type="hidden" name="attendance_date" value="{{ date("d/m/y") }}">
-                    <input type="hidden" name="attendance_month" value="{{ date("M") }}">
+                    <input type="hidden" name="attendance_month" value="{{ date("F") }}">
                     <input type="hidden" name="attendance_year" value="{{ date("Y") }}">
+                    <input type="hidden" name="attendance_day" value="{{ date("d") }}">
                     <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Present" required>Present&nbsp;&nbsp;
-                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Absent" required>Absent                    
+                    <input type="radio" class="mr-1" name="status[{{ $employee->id }}]" value="Absent" required>Absent
                 </td>
                </tr>
-               @endforeach  
-            </tbody>                     
+               @endforeach
+            </tbody>
            </table>
        <button type="submit" class="btn btn-info">Take Attendance</button>
-    </form>  
+    </form>
        </div>
    </div>
 @stop

@@ -40,14 +40,14 @@ class CustomerController extends Controller
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
             'email'   => ['required', 'email', 'unique:customers,email'],
-            'phone' => ['required', 'max:10'],
+            'phone' => ['required', 'integer', 'digits:10', 'regex:/((98)|(97))(\d){8}/'],
             'address' => ['required'],
             'shopname' => ['required'],
             'bank_name' => ['required'],
             'bank_branch' => ['required'],
             'account_number' => ['required'],
             'account_holder' => ['required'],
-        ]);
+        ], ['regex' => 'Phone number must start with 98 or 97 and must be 10 digits!']);
         $customer = new Customer;
         $customer->name = $request->name;
         $customer->email = $request->email;
@@ -105,14 +105,14 @@ class CustomerController extends Controller
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
             'email'   => ['required', 'email', 'unique:customers,email,' . $customer->id],
-            'phone' => ['required', 'max:10'],
+            'phone' => ['required', 'integer', 'digits:10', 'regex:/((98)|(97))(\d){8}/'],
             'address' => ['required'],
             'shopname' => ['required'],
             'bank_name' => ['required'],
             'bank_branch' => ['required'],
             'account_number' => ['required'],
             'account_holder' => ['required'],
-        ]);
+        ], ['regex' => 'Phone number must start with 98 or 97 and must be 10 digits!']);
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;

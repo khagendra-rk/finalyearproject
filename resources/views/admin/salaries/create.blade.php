@@ -20,24 +20,16 @@ $(document).ready(function() {
         </div>
     </div>
 <div class="card-body">
-    <form action="{{ route('admin.salaries.store') }}" method="post">
+    <form action="{{ route('admin.salaries.payadvance') }}" method="post">
     @csrf
     <div class="form-group">
         <label for="name">Employee</label>
-        @php
-            $emp=DB::table('employees')->get();
-        @endphp
         <select name="emp_id" class="form-control">
-            <option disabled="" selected=""></option>
-                @foreach ($emp as $row)
-                    <option value="{{ $row->id }}">{{ $row->name }}</option>
+            <option disabled="" selected="">Choose an employee...</option>
+                @foreach ($employees as $row)
+                    <option value="{{ $row->id }}">{{ $row->name }} - Rs. {{ $row->salary }}</option>
                 @endforeach
         </select>
-        {{-- <input type="text" name="name" id="name" class="form-control @error('name') is-invalid           
-        @endif" value="{{ old('name')??'' }}">
-        @error('name')
-        <small class="form-text text-danger">{{ $message }}</small>       
-        @enderror --}}
     </div>
     <div class="form-group">
         <label for="month">Month</label>
@@ -56,26 +48,26 @@ $(document).ready(function() {
             <option value="November">November</option>
             <option value="December">December</option>
         </select>
-        {{-- <input type="email" name="email" id="email" class="form-control @error('email') is-invalid           
+        {{-- <input type="email" name="email" id="email" class="form-control @error('email') is-invalid
         @endif" value="{{ old('email')??'' }}">
         @error('email')
-        <small class="form-text text-danger">{{ $message }}</small>       
+        <small class="form-text text-danger">{{ $message }}</small>
         @enderror --}}
     </div>
     <div class="form-group">
         <label for="year">Year</label>
-        <input type="text" name="year" id="year" class="form-control @error('year') is-invalid           
-        @endif" value="{{ old('year')??'' }}">
+        <input type="number" min="{{ now()->format('Y') }}" name="year" id="year" class="form-control @error('year') is-invalid
+        @endif" value="{{ old('year')?? now()->format('Y') }}">
         @error('year')
-        <small class="form-text text-danger">{{ $message }}</small>       
+        <small class="form-text text-danger">{{ $message }}</small>
         @enderror
     </div>
     <div class="form-group">
-        <label for="advanced_salary">Advanced Salary</label>
-        <input type="text" name="advanced_salary" id="advanced_salary" class="form-control @error('advanced_salary') is-invalid           
+        <label for="advanced_salary">Advanced Salary Percentage (%)</label>
+        <input type="number" min="1" max="100" name="advanced_salary" id="advanced_salary" class="form-control @error('advanced_salary') is-invalid
         @endif" value="{{ old('advanced_salary')??'' }}">
         @error('advanced_salary')
-        <small class="form-text text-danger">{{ $message }}</small>       
+        <small class="form-text text-danger">{{ $message }}</small>
         @enderror
     </div>
     {{-- <button type="submit" class="btn btn-primary">
@@ -84,4 +76,4 @@ $(document).ready(function() {
     <input type="submit"  class="btn btn-primary" value="Add Advanced Salary">
 </form>
 </div>
-@stop 
+@stop

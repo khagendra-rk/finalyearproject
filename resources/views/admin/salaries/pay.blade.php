@@ -15,7 +15,9 @@ function deleteSalary(id){
 <x-alert/>
    <div class="card">
        <div class="card-header">
-           <h3 class="card-title" style="font-size: 1.5em;font-weight:bold">Pay Salaries: <span class="text-danger">{{ date("F Y") }}</span></h3>
+           <h3 class="card-title" style="font-size: 1.5em;font-weight:bold">
+                Pay Salary
+           </h3>
            <div class="card-tools">
                <a class="btn btn-info btn-sm" href="{{ route('admin.salaries.create') }}">
                 <i class="fas fa-user-plus fa-fw mr-1"></i>Add New</a>
@@ -25,32 +27,26 @@ function deleteSalary(id){
            <table class="table">
                <thead>
                    <tr>
+                       <th>SN</th>
                        <th>Employee Name</th>
                        <th>Salary</th>
-                       <th>Month</th>
-                       <th>Advanced Salary</th>                       
-                       <th>Pay</th>
+                       <th></th>
                    </tr>
                </thead>
-               {{-- @php
-               $month=date("F",strtotime('-1 month'));
-            $salaries = DB::table('salaries')
-            ->join('employees', 'salaries.emp_id', 'employees.id')
-            ->select('salaries.*', 'employees.name', 'employees.salary')
-            ->where('month','$month')
-            ->get(); --}}
-               {{-- @endphp --}}
                <tbody>
-               @foreach ($salaries as $row )
-               <tr>
-                   <td>{{ $row->employee->name }}</td>
-                   <td>{{ $row->employee->salary }}</td>
-                   <td>{{date("F",strtotime('-1 months'))}}</td>
-                   <td>{{ $row->advanced_salary }}</td>
-                   <td><a href="{{ route('admin.salaries.pay',$row->id) }}">Pay Now</a></td>
-               </tr>
-               @endforeach    
-            </tbody>                     
+                @foreach($employees as $employee)
+                <tr>
+                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ $employee->name }}</td>
+                    <td>Rs. {{ $employee->salary }}</td>
+                    <td>
+                        <a href="{{ route('admin.salaries.employee.pay', $employee->id) }}">
+                            Pay Salary
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+               </tbody>
            </table>
        </div>
    </div>

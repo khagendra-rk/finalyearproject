@@ -42,8 +42,8 @@ function deleteAttendance(edit_date){
                     <a href="{{ route('admin.attendance.edit', ['date' => $attendance->edit_date]) }}">View & Edit</a>
                    </td>
                </tr>
-               @endforeach    
-            </tbody>                     
+               @endforeach
+            </tbody>
            </table>
        </div>
    </div>
