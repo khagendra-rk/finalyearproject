@@ -44,7 +44,7 @@ $(document).ready(function() {
             $cat=DB::table('categories')->get();
         @endphp
         <select name="category_id" class="form-control">
-            <option disabled="" selected=""></option>
+            <option disabled="" selected="">Choose one Category..</option>
                 @foreach ($cat as $row)
                     <option value="{{ $row->id }}">{{ $row->cat_name }}</option>
                 @endforeach
@@ -56,7 +56,7 @@ $(document).ready(function() {
             $sup=DB::table('suppliers')->get();
         @endphp
         <select name="supplier_id" class="form-control">
-            <option disabled="" selected=""></option>
+            <option disabled="" selected="">Select One Supplier..</option>
                 @foreach ($sup as $row)
                     <option value="{{ $row->id }}">{{ $row->name }}</option>
                 @endforeach
