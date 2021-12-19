@@ -10,11 +10,11 @@
 <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-user-tie"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Sales</span>
-            <span class="info-box-number">760</span>
+            <span class="info-box-text">Customers</span>
+            <span class="info-box-number">{{ $customers_count }}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -41,7 +41,7 @@
 
              <div class="info-box-content">
             <span class="info-box-text">Employees</span>
-            <span class="info-box-number">10</span>
+            <span class="info-box-number">{{ $employees_count }}</span>
         </div>
             <!-- /.info-box-content -->
       </div>
@@ -54,13 +54,53 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Today Expense</span>
-          <span class="info-box-number">500</span>
+          <span class="info-box-number">{{ $today_expenses }}</span>
         </div>
         <!-- /.info-box-content -->
       </div>
       <!-- /.info-box -->
     </div>
     <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-truck"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Suppliers</span>
+          <span class="info-box-number">{{ $suppliers_count }}</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-cubes"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Products</span>
+          <span class="info-box-number">{{ $products_count }}</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-light elevation-1"><i class="fas fa-cart-arrow-down"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Orders</span>
+          <span class="info-box-number">{{ $orders_count }}</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    
 
     <!-- fix for small devices only -->
     <div class="clearfix hidden-md-up"></div>
