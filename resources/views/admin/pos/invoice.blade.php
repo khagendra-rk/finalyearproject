@@ -111,7 +111,7 @@ $(document).ready(function() {
       </div>
       <!-- /.col -->
       <div class="col-6">
-        <p class="lead">Amount Due 2/22/2014</p>
+        <p class="lead"></p>
 
         <div class="table-responsive">
           <table class="table">

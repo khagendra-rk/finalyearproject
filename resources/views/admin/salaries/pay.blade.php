@@ -30,7 +30,7 @@ function deleteSalary(id){
                        <th>SN</th>
                        <th>Employee Name</th>
                        <th>Salary</th>
-                       <th></th>
+                       <th>Action</th>
                    </tr>
                </thead>
                <tbody>

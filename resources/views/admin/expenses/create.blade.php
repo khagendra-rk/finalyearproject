@@ -21,7 +21,7 @@ $(document).ready(function() {
         <div class="card-tools mr-1">
             <a class="btn btn-info btn-sm mr-1" href="{{ route('admin.expenses.today') }}">Today</a>
             <a class="btn btn-secondary btn-sm mr-1" href="{{ route('admin.expenses.monthly') }}">This Month</a>
-            <a class="btn btn-dark btn-sm mr-1" href="{{ route('admin.expenses.yearly') }}">This Month</a>
+            <a class="btn btn-dark btn-sm mr-1" href="{{ route('admin.expenses.yearly') }}">This Year</a>
 
         </div>
     </div>

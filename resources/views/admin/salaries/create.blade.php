@@ -34,7 +34,7 @@ $(document).ready(function() {
     <div class="form-group">
         <label for="month">Month</label>
         <select name="month" class="form-control">
-            <option disabled="" selected=""></option>
+            <option disabled="" selected="">Select a month..</option>
             <option value="January">January</option>
             <option value="Feburary">Feburary</option>
             <option value="March">March</option>
