@@ -40,12 +40,12 @@ class EmployeeController extends Controller
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
             'email'   => ['required', 'email', 'unique:employees,email'],
-            'phone' => ['required', 'max:10'],
+            'phone' => ['required', 'integer', 'digits:10', 'regex:/((98)|(97))(\d){8}/'],
             'address' => ['required'],
             'salary' => ['required', 'integer', 'gte:1'],
             'experience' => ['required'],
 
-        ]);
+        ], ['regex' => 'Phone number must start with 98 or 97 and must be 10 digits!']);
         $employee = new Employee;
         $employee->name = $request->name;
         $employee->email = $request->email;
@@ -93,12 +93,12 @@ class EmployeeController extends Controller
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
             'email'   => ['required', 'email', 'unique:employees,email,' . $employee->id],
-            'phone' => ['required', 'max:10'],
+            'phone' => ['required', 'integer', 'digits:10', 'regex:/((98)|(97))(\d){8}/'],
             'address' => ['required'],
             'salary' => ['required', 'integer', 'gte:1'],
             'experience' => ['required'],
 
-        ]);
+        ], ['regex' => 'Phone number must start with 98 or 97 and must be 10 digits!']);
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->phone = $request->phone;

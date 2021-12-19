@@ -40,7 +40,7 @@ class SupplierController extends Controller
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
             'email'   => ['required', 'email', 'unique:suppliers,email'],
-            'phone' => ['required', 'max:10'],
+            'phone' => ['required', 'integer', 'digits:10', 'regex:/((98)|(97))(\d){8}/'],
             'address' => ['required'],
             'shopname' => ['required'],
             'type' => ['required'],
@@ -48,7 +48,8 @@ class SupplierController extends Controller
             'bank_branch' => ['required'],
             'account_number' => ['required'],
             'account_holder' => ['required'],
-        ]);
+        ], ['regex' => 'Phone number must start with 98 or 97 and must be 10 digits!']);
+
         $supplier = new Supplier;
         $supplier->name = $request->name;
         $supplier->email = $request->email;
@@ -100,7 +101,7 @@ class SupplierController extends Controller
         $request->validate([
             'name'    => ['required', 'min:2', 'max:50'],
             'email'   => ['required', 'email', 'unique:suppliers,email,' . $supplier->id],
-            'phone' => ['required', 'max:10'],
+            'phone' => ['required', 'integer', 'digits:10', 'regex:/((98)|(97))(\d){8}/'],
             'address' => ['required'],
             'shopname' => ['required'],
             'type' => ['required'],
@@ -108,7 +109,7 @@ class SupplierController extends Controller
             'bank_branch' => ['required'],
             'account_number' => ['required'],
             'account_holder' => ['required'],
-        ]);
+        ], ['regex' => 'Phone number must start with 98 or 97 and must be 10 digits!']);
         $supplier->name = $request->name;
         $supplier->email = $request->email;
         $supplier->phone = $request->phone;
@@ -126,7 +127,7 @@ class SupplierController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     *php
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
