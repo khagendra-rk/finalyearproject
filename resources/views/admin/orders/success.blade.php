@@ -18,7 +18,8 @@
                        <th>Name</th>
                        <th>Order Date</th>
                        <th>Quantity</th>
-                       <th> Total Amount</th>
+                       <th>Total Amount</th>
+                       <th>Due</th>
                        <th>Payment Status</th>
                        <th>Order Status</th>
                        <th>Action</th>
@@ -31,6 +32,7 @@
                    <td>{{ $row->order_date}}</td>
                    <td>{{ $row->total_products}}</td>
                    <td>{{ $row->total}}</td>
+                   <td>{{ $row->due }}</td>
                    <td>{{ $row->payment_status}}</td>
                    <td><span class="badge badge-success">{{ $row->order_status}}</span> </td>
                    <td><a href="{{ route('admin.orders.status',$row->id) }}" class="btn btn-sm btn-primary">View</a></td>
