@@ -87,7 +87,7 @@ $(document).ready(function() {
         @enderror
     </div>
     <div class="form-group">
-        <label for="account_holder">Acoount Holder Name</label>
+        <label for="account_holder">Account Holder Name</label>
         <input type="text" name="account_holder" id="account_holder" class="form-control @error('account_holder') is-invalid           
         @endif" value="{{ old('account_holder')??'' }}">
         @error('account_holder')

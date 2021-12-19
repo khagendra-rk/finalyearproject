@@ -13,7 +13,7 @@
        </div>
        <div class="card-body">
            Current Stock: <b>{{ $product->stocks_sum_quantity ?? 0 }}</b>
-           <table class="table">
+           <table class="table table-bordered">
                <thead>
                    <tr>
                        <th>Quantity</th>

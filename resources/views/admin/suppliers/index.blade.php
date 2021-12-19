@@ -22,7 +22,7 @@ function deleteSupplier(id){
            </div>
        </div>
        <div class="card-body">
-           <table class="table">
+           <table class="table table-bordered">
                <thead>
                    <tr>
                        <th>ID</th>
